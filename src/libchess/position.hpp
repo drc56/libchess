@@ -215,6 +215,42 @@ class Position {
         throw std::invalid_argument("Illegal move string");
     }
 
+    [[nodiscard]] std::string parse_move_to_san(const Move& move) const noexcept{
+        std::string san_string;
+        if(move.type() == MoveType::ksc){
+            return "O-O";
+        }
+        if(move.type() == MoveType::qsc){
+            return "O-O-O";
+        }
+        
+        if(move.piece() != Piece::Pawn)
+        {
+            san_string += piecetostring(move.piece());
+        }
+        
+
+
+        // Need to the clarity if another piece of that type could make the move..
+
+        if(move.type() == MoveType::Capture || move.type() == MoveType::promo_capture){
+            if(move.piece() == Piece::Pawn){
+                san_string += static_cast<std::string>(move.from())[0];
+            }
+            san_string += "x";
+        }
+
+        san_string += static_cast<std::string>(move.to());
+        if (move.promotion() != Piece::None) {
+            const char asd[] = {'n', 'b', 'r', 'q'};
+            san_string += asd[move.promotion() - 1];
+        }
+
+        // Add the check testing..
+
+        return san_string;
+    }
+
     void makemove(const Move &move) noexcept;
 
     void makemove(const std::string &str) {

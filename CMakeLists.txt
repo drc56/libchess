@@ -13,7 +13,7 @@ set(CMAKE_CXX_FLAGS "-Wall -pedantic -pedantic-errors -Wextra -Wcast-align -Wcas
 set(CMAKE_CXX_FLAGS_DEBUG "-g")
 set(CMAKE_CXX_FLAGS_RELEASE "-O3 -march=native -DNDEBUG")
 set(CMAKE_INTERPROCEDURAL_OPTIMIZATION_RELEASE TRUE)
-set(CMAKE_CXX_COMPILER /usr/bin/gcc-10)
+set(CMAKE_CXX_COMPILER /usr/bin/g++-10)
 
 # Default build type
 if(NOT CMAKE_BUILD_TYPE)
@@ -39,6 +39,7 @@ add_library(
     src/perft.cpp
     src/pinned.cpp
     src/predict_hash.cpp
+    src/san_helpers.cpp
     src/set_fen.cpp
     src/square_attacked.cpp
     src/squares_attacked.cpp
