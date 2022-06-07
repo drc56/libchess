@@ -228,12 +228,9 @@ class Position {
         {
             san_string += piecetostring(move.piece());
         }
-        
-
-
         // Need to the clarity if another piece of that type could make the move..
 
-        if(move.type() == MoveType::Capture || move.type() == MoveType::promo_capture){
+        if(move.type() == MoveType::Capture || move.type() == MoveType::promo_capture || move.type() == MoveType::enpassant){
             if(move.piece() == Piece::Pawn){
                 san_string += static_cast<std::string>(move.from())[0];
             }
@@ -247,7 +244,6 @@ class Position {
         }
 
         // Add the check testing..
-
         return san_string;
     }
 

@@ -63,16 +63,17 @@ TEST_CASE("Position::parse_move() exceptions") {
 }
 
 TEST_CASE("Position::parse_move_to_san() success") {
-    const std::array<std::pair<std::string, std::string>, 6> strings = {{
+    const std::array<std::pair<std::string, std::string>, 7> strings = {{
         {"a2a3", "a3"}, 
         {"a2a4", "a4"},
         {"b3c5", "Nxc5"},
         {"e1g1", "O-O"},
         {"e1c1", "O-O-O"},
-        {"e2g4", "Bxg4"}
+        {"e2g4", "Bxg4"},
+        {"d5e6", "dxe6"}
     }};
 
-    const auto pos = libchess::Position{"rn1qkbnr/pp2pppp/3p4/2pP4/6b1/1NB1P2N/PPPQBPPP/R3K2R w KQkq - 0 1"};
+    const auto pos = libchess::Position{"rn1qkbnr/pp3ppp/3p4/2pPp3/6b1/1NB1P2N/PPPQBPPP/R3K2R w KQkq e6 0 1"};
     for (const auto& movepair : strings) {
         auto move = pos.parse_move(movepair.first);
         REQUIRE(pos.parse_move_to_san(move) == movepair.second);
