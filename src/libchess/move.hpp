@@ -148,6 +148,31 @@ class Move {
         return str;
     }
 
+    // [[nodiscard]] std::string to_san() const noexcept{
+    //     std::string san_string;
+    //     if(type() == MoveType::ksc){
+    //         return "O-O";
+    //     }
+    //     if(type() == MoveType::qsc){
+    //         return "O-O-O";
+    //     }
+        
+    //     auto piece = static_cast<Piece>((data_ >> 15) & 0x7);
+    //     san_string += piecetostring(piece);
+
+    //     if(type() == MoveType::Capture || type() == MoveType::promo_capture){
+    //         san_string += "x";
+    //     }
+
+    //     san_string += static_cast<std::string>(to());
+    //     if (promotion() != Piece::None) {
+    //         const char asd[] = {'n', 'b', 'r', 'q'};
+    //         san_string += asd[promotion() - 1];
+    //     }
+
+    //     return san_string;
+    // }
+
     [[nodiscard]] constexpr bool operator==(const Move &rhs) const noexcept {
         return data_ == rhs.data_;
     }
